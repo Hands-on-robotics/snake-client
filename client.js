@@ -19,6 +19,9 @@ const connect = function() {
     console.log("Successfully connected to game server");
   });
 
+  // using conn.write("user_name");
+  conn.write("Name: EHH");
+
   // conn object used to receive data with a callback function.
   conn.on('data', (data) => {
     console.log('Servers says: ', data);
