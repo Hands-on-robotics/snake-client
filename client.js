@@ -14,6 +14,11 @@ const connect = function() {
     }
   );
 
+  // upon connection
+  conn.on('connect', () => {
+    console.log("Successfully connected to game server");
+  });
+
   // conn object used to receive data with a callback function.
   conn.on('data', (data) => {
     console.log('Servers says: ', data);
