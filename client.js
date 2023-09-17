@@ -17,10 +17,18 @@ const connect = function() {
   // upon connection
   conn.on('connect', () => {
     console.log("Successfully connected to game server");
+    // write user name to server.
+    conn.write("Name: EHH");
+ 
+    
   });
 
-  // using conn.write("user_name");
-  conn.write("Name: EHH");
+
+  // "Move: up" - move up one square (unless facing down)
+  // "Move: down" - move down one square (unless facing up)
+  // "Move: left" - move left one square (unless facing right)
+  // "Move: right" - move left one square (unless facing left)
+
 
   // conn object used to receive data with a callback function.
   conn.on('data', (data) => {
