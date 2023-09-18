@@ -6,7 +6,7 @@ let connection;
 
 // callback for setupInput()
 const handleUserInput = function(key) {
-  // to exit "Ctrl + C"
+  //  Movement controls and to exit "Ctrl + C"
   if (key === '\u0003') {
     process.stdout.write('Ctrl+C pressed. Now exiting...');
     process.exit();
@@ -22,6 +22,20 @@ const handleUserInput = function(key) {
   } else if (key === "d") {
     connection.write("Move: right");
     console.log("Pressed: Right");
+  }
+  
+  if (key === "j") {
+    connection.write("Say: Going Left");
+  } else if (key === "i") {
+    connection.write("Say: Going UP");
+  } else if (key === "l") {
+    connection.write("Say: Going Right");
+  } else if (key === "k") {
+    connection.write("Say: Going Down");
+  } else if (key === "u") {
+    connection.write("Say: Good Game ✅");
+  } else if (key === "o") {
+    connection.write("Say: Nice Move!");
   }
   
 };
