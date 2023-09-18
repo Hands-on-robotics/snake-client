@@ -1,6 +1,7 @@
 
 // import the net module {object} from node.js
 const net = require('net');
+const { IP, PORT } = require('./constants');
 
 //create a connection function
 const connect = function() {
@@ -9,8 +10,8 @@ const connect = function() {
   const conn = net.createConnection(
     // conn holds an identification object in the createConnection() function.
     {
-      host: 'localhost',
-      port: 50541,
+      host: IP,
+      port: PORT
     }
   );
 
