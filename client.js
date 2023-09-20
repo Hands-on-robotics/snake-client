@@ -1,44 +1,35 @@
 
-// import the net module {object} from node.js
+// This file handles the connection to the snek-multiplayer server
+
 const net = require('net');
 const { IP, PORT } = require('./constants');
 
-//create a connection function
+
+// Handles server connection
 const connect = function() {
 
-  // declare the variable name that will establish the connection.
-  const conn = net.createConnection(
-    // conn holds an identification object in the createConnection() function.
-    {
-      host: IP,
-      port: PORT
-    }
-  );
+  // Creates server connection
+  const conn = net.createConnection({ host: IP, port: PORT });
+  // IP and PORT are both hard coded in constants.js
 
-  // upon connection
+  // Upon Connection
   conn.on('connect', () => {
     console.log("Successfully connected to game server");
-    // write user name to server.
-    conn.write("Name: EHH");
- 
-
+    conn.write("Name: EHH");  // Writes user's name to server.
   });
-
-
-
-  // conn object used to receive data with a callback function.
+  
+  // All incoming data is interpreted as standard text.
+  conn.setEncoding('utf8');
+  
+  // Handles incoming data from server and logs it to console.
   conn.on('data', (data) => {
     console.log('Servers says: ', data);
   });
+  
 
-  // incoming data interpreted as text.
-  conn.setEncoding('utf8');
-
-  // return the net.createConnection({host: 'localhost", port: 50541}) variable.
+  // Returns the variable for the server IP and PORT object.
   return conn;
 };
 
-// module exports is an empty object and can be assigned key-value pairs like any object.
-// keys will be accessible in the require() object of the destination file.
-// function exported as an object within an object.
+// Exported to play.js
 module.exports = { connect };

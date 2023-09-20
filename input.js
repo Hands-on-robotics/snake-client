@@ -1,38 +1,51 @@
 
+// This file handles input from the user
+
+// Key assignments from constants.js
 const {
   DIRECTION_KEYS,
   MESSAGE_KEYS,
   exitKey
 } = require('./constants');
 
-let connection;
+// Global variable declared to pass parameter value into handle user input
+let connect;
 
-// setup interface to handle user input from stdin
-
-
-// callback for setupInput()
-const handleUserInput = function(key) {
-  //  DIRECTION_KEYS and to exit "Ctrl + C"
-  if (key === exitKey) {
-    process.stdout.write('Now exiting...');
-    process.exit();
-  }  else if (DIRECTION_KEYS[key]) {
-    connection.write(DIRECTION_KEYS[key]);
-    console.log(DIRECTION_KEYS[key]);
-  } else if (MESSAGE_KEYS[key]) {
-    connection.write(MESSAGE_KEYS[key]);
-  }
-};
-
+// Handles Setup for User Input
 const setupInput = function(conn) {
-  connection = conn;
+  
+  // Shorten variable names
   const stdin = process.stdin;
+  connect = conn;
+  
+  // Sets Encoding
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
   stdin.resume();
+
+  // User inputs are sent to handle user input
   stdin.on('data', handleUserInput);
-  return stdin;
 };
 
-// function exported in object of object.
+
+// Handles user input
+const handleUserInput = function(key) {
+
+  // Exit key is "Ctrl + C"
+  if (key === exitKey) {
+    process.stdout.write('Now exiting...');
+    process.exit();
+
+  // Directional inputs for snake
+  }  else if (DIRECTION_KEYS[key]) {
+    connect.write(DIRECTION_KEYS[key]);
+    console.log(DIRECTION_KEYS[key]);
+
+  // Message inputs for snake to display
+  } else if (MESSAGE_KEYS[key]) {
+    connect.write(MESSAGE_KEYS[key]);
+  }
+};
+
+// Exported to play.js
 module.exports = { setupInput };

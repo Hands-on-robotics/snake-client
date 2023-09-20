@@ -1,12 +1,10 @@
 
-// access the client file in folder and create connect() function variable from object.
-// require always runs all the code in the required file...
-
+// Run this file to play snek-multiplayer
 const { connect } = require('./client');
 const { setupInput } = require('./input');
 
+// While trying to connect to the server
 console.log("Connecting ...");
 
-
-let conn = connect();
-setupInput(conn);
+// connect() passes the servers connection into setupInput
+setupInput(connect());
