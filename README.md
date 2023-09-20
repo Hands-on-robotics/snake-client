@@ -8,8 +8,9 @@ Before you can run this client, you will need to be running the server side whic
 
 ## Final Product
 
-!["screenshot description"](#)
-!["screenshot description"](#)
+![Starting out in the game you will receive a connected to server message to let you know you can start playing. But don't wait too long or the server will boot you, letting you know that your snake died.](./screenshots/starting.png)
+
+![How far can you grow? This is a multiplayer game with competition. Might want to practice the controls on your own first.](./screenshots/havingGrown.png)
 
 ## Getting Started
 
